@@ -5,6 +5,32 @@ import * as SecureStore from 'expo-secure-store';
 import { Shadow } from 'react-native-shadow-2';
 import Modal from "react-native-modal";
 import { useFonts } from 'expo-font';
+import * as Notifications from "expo-notifications";
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+
+
+async function triggerNotifications (data) {
+  let stringData = ""
+  console.log(data)
+  for (notifObject of data){
+    stringData += "● " + notifObject.message + "\n"
+  }
+  await Notifications.scheduleNotificationAsync({
+    content: {
+      title: "Your Reminders For Today",
+      body: stringData,
+      data: { data: "goes here" },
+    },
+    trigger: { seconds: 60*60*24, repeats: true },
+  });
+}
 
 export default function App() {
   const [reminders, setReminders] = React.useState([])
@@ -14,6 +40,8 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     'Archivo': require('../assets/fonts/Archivo.ttf'),
   });
+
+
 
   function uid() {
     return Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -60,7 +88,10 @@ export default function App() {
         
         <View className="absolute right-4 bottom-4 p-4">
           <Shadow className="rounded-xl"  offset={[5,5]} distance={0} startColor='#000000ff'>
-            <Pressable onPress={()=>{setIsModalVisibile(true)}} className="border-2 w-16 h-16 flex items-center justify-center rounded-xl bg-[#BAFDA2] fixed active:translate-x-1 active:translate-y-1"><Text className="text-2xl">+</Text></Pressable>
+            <Pressable onPress={()=>{
+              triggerNotifications();
+              setIsModalVisibile(true);
+              }} className="border-2 w-16 h-16 flex items-center justify-center rounded-xl bg-[#BAFDA2] fixed active:translate-x-1 active:translate-y-1"><Text className="text-2xl">+</Text></Pressable>
           </Shadow>
         </View>
 
@@ -85,6 +116,8 @@ export default function App() {
                     reminders.push({id: uid(), message: reminderMessage})
                     await SecureStore.setItemAsync("items", JSON.stringify(reminders))
                     setReminders(reminders)
+                    await Notifications.cancelAllScheduledNotificationsAsync()
+                    await triggerNotifications(reminders)
                     setIsModalVisibile(false)
                   }} className="border-2 rounded-xl p-3 bg-[#BAFDA2] active:translate-x-1 active:translate-y-1"><Text>Done</Text></Pressable>
                 </Shadow>
