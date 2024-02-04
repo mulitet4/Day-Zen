@@ -1,10 +1,10 @@
 {
-  "name": "true-do-app",
+  "name": "Day-Zen",
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
+    "android": "expo start --android --tunnel",
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
