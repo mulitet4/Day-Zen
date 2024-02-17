@@ -3,9 +3,7 @@ import * as React from 'react';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Shadow } from 'react-native-shadow-2';
-import Modal from "react-native-modal";
 
-import { useFonts } from 'expo-font';
 import * as SecureStore from 'expo-secure-store';
 import * as Notifications from "expo-notifications";
 
@@ -23,6 +21,7 @@ Notifications.setNotificationHandler({
 // Helper functions
 async function triggerNotifications (data) {
   let stringData = ""
+  // console.log(data)
   for (notifObject of data){
     stringData += "● " + notifObject.message + "\n"
   }
@@ -55,9 +54,6 @@ export default function App() {
   const [reminderMessage, setReminderMessage] = React.useState("")
 
   const [loading, setLoading] = React.useState(true);
-  const [fontsLoaded] = useFonts({
-    'Archivo': require('../assets/fonts/Archivo.ttf'),
-  });
 
   const [isDeleteModalVisible, setIsDeleteModalVisible] = React.useState(false)
   const [deleteId, setDeleteId] = React.useState("")
