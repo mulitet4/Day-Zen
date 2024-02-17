@@ -40,12 +40,12 @@ const AddModal = ({isModalVisibile, setIsModalVisibile, reminderMessage, setRemi
           <Shadow className="rounded-xl mr-3"  offset={[4,4]} distance={0} startColor='#000000ff'>
             <Pressable 
               onPress={async ()=>{
-                if(reminderMessage == "" || reminderMessage == null){
+                if(reminderMessage == "" || reminderMessage == null || reminderMessage == undefined){
                   return
                 }
 
                 let reminders = await SecureStore.getItemAsync("items")
-                if (reminders) {
+                if (reminders != "" || reminders != null || reminders != undefined) {
                   reminders = JSON.parse(reminders);
                 } else {
                   reminders = [{}];
