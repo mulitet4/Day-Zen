@@ -1,14 +1,16 @@
-import { Slot, SplashScreen } from "expo-router";
+import { Slot, SplashScreen } from 'expo-router';
 import { useFonts, fontError } from 'expo-font';
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import "../global.css";
+import 'expo-dev-client';
+
+import '../global.css';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function () {
   const [fontsLoaded] = useFonts({
-    'Archivo': require('../assets/fonts/Archivo.ttf'),
+    Archivo: require('../assets/fonts/Archivo.ttf'),
   });
 
   useEffect(() => {

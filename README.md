@@ -1,6 +1,6 @@
 # What is Day Zen?
 
-Day Zen is an app to keep track of all the things you want to remind yourself of everyday! Simply add what you want to remind yourself, and the app will send you your list of reminders everyday
+Day Zen is an app to keep track of all the things you want to remind yourself of everyday! Simply add what you want to remind yourself, and the app will send you your list of reminders everyday. [Download Here]()
 
 # Why?
 

@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -22,12 +24,17 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.mulitet4.dayzen",
-      "permissions": ["NOTIFICATIONS"]
+      "permissions": [
+        "NOTIFICATIONS"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [],
+    "plugins": [
+      "expo-font",
+      "expo-secure-store"
+    ],
     "extra": {
       "router": {
         "origin": false

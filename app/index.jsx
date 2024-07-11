@@ -5,6 +5,7 @@ import {
   Pressable,
   StyleSheet,
   ScrollView,
+  Platform,
 } from 'react-native';
 import * as React from 'react';
 
